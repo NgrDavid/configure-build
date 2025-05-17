@@ -132,7 +132,10 @@ async function main(): Promise<void> {
 
             if (!version) {
                 //TODO: Should we allo falling back on 0.0.0 here? Try an older release?
-                core.setFailed(`Most recent release '${versionString}' is not a valid semver version!`);
+                //core.setFailed(`Most recent release '${versionString}' is not a valid semver version!`);
+                // Doing this for now
+                core.warning(`Most recent release '${versionString}' is not a valid semver version, using 0.0.0 instead.`);
+                version = semver.parse('0.0.0');
                 return;
             }
 
